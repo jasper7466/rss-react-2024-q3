@@ -1,0 +1,5 @@
+.search-bar {
+  display: flex;
+  padding: var(--spacing-xs-4px);
+  gap: var(--spacing-xs-4px);
+}
