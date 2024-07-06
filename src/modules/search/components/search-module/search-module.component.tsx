@@ -10,7 +10,7 @@ type Props = Record<string, never>;
 
 type State = {
   items: IItem[];
-  query?: string;
+  query: string | null;
   isLoading: boolean;
 };
 
@@ -18,6 +18,7 @@ export class SearchModule extends Component<Props, State> {
   state: State = {
     items: [],
     isLoading: false,
+    query: null,
   };
 
   async handleSubmit(query: string) {
@@ -26,6 +27,14 @@ export class SearchModule extends Component<Props, State> {
     const items = await searchService.searchItems(query);
 
     this.setState({ items, query, isLoading: false });
+  }
+
+  componentDidMount(): void {
+    const query = searchService.getLastQuery();
+
+    if (query !== null) {
+      this.handleSubmit(query);
+    }
   }
 
   render() {
