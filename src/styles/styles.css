@@ -1,5 +1,6 @@
 body {
   display: flex;
   justify-content: center;
-  background-color: blue;
+  padding: var(--spacing-m-12px);
+  background-color: var(--color-bg-primary);
 }

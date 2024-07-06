@@ -1,8 +1,8 @@
 :root {
   /* colors */
-  --color-bg-primary: blue;
+  --color-bg-primary: white;
   --color-bg-secondary: gray;
-  --color-txt-primary: white;
+  --color-txt-primary: black;
 
   /* spacing */
   --spacing-xs-4px: 4px;
