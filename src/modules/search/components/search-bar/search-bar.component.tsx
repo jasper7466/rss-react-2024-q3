@@ -25,10 +25,6 @@ export class SearchBar extends Component<Props, State> {
   }
 
   handleSubmit() {
-    if (!this.state.query.length) {
-      return;
-    }
-
     this.props.submitHandler(this.state.query);
   }
 
@@ -39,9 +35,7 @@ export class SearchBar extends Component<Props, State> {
           placeholder="Enter search query..."
           onChange={this.handleInputChange.bind(this)}
           onKeyDown={this.handleKeyPress.bind(this)}></input>
-        <button onClick={this.handleSubmit.bind(this)} disabled={!this.state.query.length}>
-          Search
-        </button>
+        <button onClick={this.handleSubmit.bind(this)}>Search</button>
       </div>
     );
   }

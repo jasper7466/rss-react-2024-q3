@@ -9,9 +9,9 @@ export class SearchList extends Component<Props, never> {
   render() {
     return (
       <div className="search-list">
-        {this.props.query ? (
+        {this.props.query !== undefined ? (
           <Fragment>
-            <p>Results for: "{this.props.query}"</p>
+            <p>Results for: "{this.props.query || '~ all products ~'}"</p>
             {this.props.items.length ? (
               this.props.items.map(item => <SearchListItem key={item.id} {...item} />)
             ) : (
@@ -19,7 +19,10 @@ export class SearchList extends Component<Props, never> {
             )}
           </Fragment>
         ) : (
-          <p>Try searching for something: “phone”, “laptop”, etc...</p>
+          <p>
+            Try searching for something: “phone”, “laptop”, etc... or make empty request for all
+            items
+          </p>
         )}
       </div>
     );
