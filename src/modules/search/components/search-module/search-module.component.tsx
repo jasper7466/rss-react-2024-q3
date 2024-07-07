@@ -4,6 +4,7 @@ import { SearchList } from '../search-list/search-list.component';
 import { searchService } from '../../services/search.service';
 import { IItem } from '../../interfaces/item.interface';
 import { OverlayLoader } from '../../../../components/overlay-loader/overlay-loader.component';
+import { ErrorThrower } from '../../../../components/error-thrower/error-thrower.component';
 import './search-module.component.css';
 
 type Props = Record<string, never>;
@@ -41,6 +42,7 @@ export class SearchModule extends Component<Props, State> {
     return (
       <section className="search-module">
         <SearchBar submitHandler={this.handleSubmit.bind(this)} />
+        <ErrorThrower />
         {this.state.isLoading ? (
           <OverlayLoader />
         ) : (
