@@ -9,10 +9,7 @@ type State = {
   query: string;
 };
 export class SearchBar extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { query: '' };
-  }
+  state: State = { query: '' };
 
   handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     this.setState({ query: event.target.value });
