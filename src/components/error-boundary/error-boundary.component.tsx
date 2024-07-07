@@ -22,16 +22,16 @@ export class ErrorBoundary extends Component<Props, State> {
     console.log('Uncaught error:', error, errorInfo);
   }
 
-  resetErrorBoundary() {
+  resetErrorBoundary = () => {
     this.setState({ hasError: false });
-  }
+  };
 
   render() {
     if (this.state.hasError) {
       return (
         <div className="error-boundary">
           <h1>Something went wrong :(</h1>
-          <button onClick={this.resetErrorBoundary.bind(this)}>Reset</button>
+          <button onClick={this.resetErrorBoundary}>Reset</button>
         </div>
       );
     }

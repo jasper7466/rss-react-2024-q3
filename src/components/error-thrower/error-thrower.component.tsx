@@ -11,14 +11,14 @@ export class ErrorThrower extends Component<Props, State> {
     isError: false,
   };
 
-  handleButtonClick() {
+  handleButtonClick = () => {
     this.setState({ isError: true });
-  }
+  };
 
   render() {
     if (this.state.isError) {
       throw new Error('Error thrower: demo error');
     }
-    return <button onClick={this.handleButtonClick.bind(this)}>Throw error</button>;
+    return <button onClick={this.handleButtonClick}>Throw error</button>;
   }
 }

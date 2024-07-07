@@ -22,13 +22,13 @@ export class SearchModule extends Component<Props, State> {
     query: null,
   };
 
-  async handleSubmit(query: string) {
+  handleSubmit = async (query: string) => {
     this.setState({ isLoading: true });
 
     const items = await searchService.searchItems(query);
 
     this.setState({ items, query, isLoading: false });
-  }
+  };
 
   componentDidMount(): void {
     const query = searchService.getLastQuery();
@@ -41,7 +41,7 @@ export class SearchModule extends Component<Props, State> {
   render() {
     return (
       <section className="search-module">
-        <SearchBar submitHandler={this.handleSubmit.bind(this)} />
+        <SearchBar submitHandler={this.handleSubmit} />
         <ErrorThrower />
         {this.state.isLoading ? (
           <OverlayLoader />
