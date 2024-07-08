@@ -38,15 +38,19 @@ export class SearchModule extends Component<Props, State> {
 
   render() {
     return (
-      <section className="search-module">
-        <SearchBar submitHandler={this.handleSubmit} />
-        <ErrorThrower />
-        {this.state.isLoading ? (
-          <OverlayLoader />
-        ) : (
-          <SearchList items={this.state.items} query={this.state.query} />
-        )}
-      </section>
+      <div className="search-module">
+        <section className="section">
+          <SearchBar submitHandler={this.handleSubmit} />
+        </section>
+        <section className="section">
+          <ErrorThrower />
+          {this.state.isLoading ? (
+            <OverlayLoader />
+          ) : (
+            <SearchList items={this.state.items} query={this.state.query} />
+          )}
+        </section>
+      </div>
     );
   }
 }
