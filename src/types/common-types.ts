@@ -5,8 +5,4 @@ export type OptionalKeysOf<T extends object> = Exclude<
   undefined
 >;
 
-// type OptionalKeysOf<T extends object> = keyof {
-//   [K in keyof T]: {} extends Pick<T, K> ? T[K] : never;
-// };
-
 export type PickOptionalPropertiesOf<T extends object> = Pick<T, OptionalKeysOf<T>>;
