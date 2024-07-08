@@ -32,10 +32,8 @@ export class SearchModule extends Component<Props, State> {
 
   componentDidMount(): void {
     const query = searchService.getLastQuery();
-
-    if (query !== null) {
-      this.handleSubmit(query);
-    }
+    this.setState({ query });
+    this.handleSubmit(query || '');
   }
 
   render() {
