@@ -1,0 +1,35 @@
+@keyframes loader-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-dual-ring {
+  color: var(--color-txt-primary);
+}
+
+.loader-dual-ring,
+.loader-dual-ring:after {
+  box-sizing: border-box;
+}
+
+.loader-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.loader-dual-ring:after {
+  content: ' ';
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6.4px solid currentColor;
+  border-color: currentColor transparent currentColor transparent;
+  animation: loader-dual-ring 1.2s linear infinite;
+}
