@@ -1,5 +1,7 @@
 .pagination {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--spacing-xs-4px);
 }
 
@@ -14,11 +16,13 @@
   height: var(--spacing-2xl-32px);
   color: var(--color-txt-primary);
   text-decoration: none;
-  transition: transform 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
 .pagination__item:hover {
   transform: scale(0.9);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-bg-primary);
 }
 
 .pagination__item_active {
