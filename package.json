@@ -11,6 +11,7 @@
     "preview": "vite preview",
     "prepare": "husky",
     "pre-commit": "npm run lint",
+    "pre-push": "npm run test",
     "deploy": "gh-pages -d dist --dest hooks-and-routing --repo git@github.com:jasper7466/rss-react-2024-q3-deployments.git"
   },
   "dependencies": {
