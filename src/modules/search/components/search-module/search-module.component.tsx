@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { SearchBar } from '../search-bar/search-bar.component';
 import { SearchList } from '../search-list/search-list.component';
 import { searchService } from '../../services/search.service';
@@ -7,45 +7,62 @@ import { OverlayLoader } from '../../../../components/overlay-loader/overlay-loa
 import { ErrorThrower } from '../../../../components/error-thrower/error-thrower.component';
 import { useLocalStorage } from '../../../../hooks/use-local-storage.hook';
 import { LOCAL_STORAGE_KEY } from '../../../../config/constants';
+import { useSearchParams } from 'react-router-dom';
 import './search-module.component.css';
 
 type LocalData = {
   query: string;
 };
 
+interface IItemsState {
+  items: IItem[];
+  total: number;
+}
+
+const initialItemsState: IItemsState = {
+  items: [],
+  total: 0,
+};
+
+const pageQueryName = 'page';
+
 export const SearchModule: FC = () => {
-  const [itemsState, setItemsState] = useState<IItem[]>([]);
+  const [itemsState, setItemsState] = useState<IItemsState>(initialItemsState);
   const [isLoadingState, setIsLoadingState] = useState<boolean>(false);
   const [data, updateData] = useLocalStorage<LocalData>(LOCAL_STORAGE_KEY);
+  const [currentQueryParameters, setSearchParams] = useSearchParams();
 
-  const handleSubmit = useCallback(
-    async (query: string) => {
-      setIsLoadingState(true);
+  const currentPage = parseInt(currentQueryParameters.get(pageQueryName) || '1', 10);
 
-      const items = await searchService.searchItems(query);
-
-      setItemsState(items);
-      updateData({ query });
-      setIsLoadingState(false);
-    },
-    [updateData],
-  );
+  const handleSearch = (query: string) => {
+    updateData({ query });
+    setSearchParams({ [pageQueryName]: '1' });
+  };
 
   useEffect(() => {
-    handleSubmit(data?.query || '');
-  }, [handleSubmit, data?.query]);
+    (async () => {
+      setIsLoadingState(true);
+
+      const items = await searchService.searchItems(data?.query || '', currentPage);
+      setItemsState(items);
+
+      setIsLoadingState(false);
+    })();
+  }, [currentPage, data]);
+
+  useEffect(() => {}, [currentPage]);
 
   return (
     <div className="search-module">
       <section className="section">
-        <SearchBar submitHandler={handleSubmit} />
+        <SearchBar submitHandler={handleSearch} />
       </section>
       <section className="section">
         <ErrorThrower />
         {isLoadingState ? (
           <OverlayLoader />
         ) : (
-          <SearchList items={itemsState} query={data?.query || ''} />
+          <SearchList items={itemsState.items} count={itemsState.total} query={data?.query || ''} />
         )}
       </section>
     </div>
