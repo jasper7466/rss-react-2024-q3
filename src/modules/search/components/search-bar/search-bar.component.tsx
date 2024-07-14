@@ -27,8 +27,18 @@ export const SearchBar: FC<Props> = ({ submitHandler }) => {
       <input
         placeholder="Enter search query..."
         onChange={handleInputChange}
-        onKeyDown={handleKeyPress}></input>
-      <button onClick={handleSubmit}>Search</button>
+        onKeyDown={handleKeyPress}
+        onClick={event => {
+          event.stopPropagation();
+        }}></input>
+
+      <button
+        onClick={event => {
+          handleSubmit();
+          event.stopPropagation();
+        }}>
+        Search
+      </button>
     </div>
   );
 };

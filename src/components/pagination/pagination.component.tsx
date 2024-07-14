@@ -15,6 +15,10 @@ export const Pagination: FC<Props> = ({ pageCount, queryName }) => {
   const query = new URLSearchParams(location.search);
   const currentPage = parseInt(query.get(queryName) || '1', 10);
 
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    event.stopPropagation();
+  };
+
   useEffect(() => {
     navigate(`${currentPathName}${`?${queryName}=${currentPage}`}`);
   }, [
@@ -33,7 +37,8 @@ export const Pagination: FC<Props> = ({ pageCount, queryName }) => {
             index === currentPage - 1 ? 'pagination__item_active' : '',
           ].join(' ')}
           to={`${currentPathName}${`?${queryName}=${index + 1}`}`}
-          key={index}>
+          key={index}
+          onClick={handleClick}>
           {index + 1}
         </Link>
       ))}
