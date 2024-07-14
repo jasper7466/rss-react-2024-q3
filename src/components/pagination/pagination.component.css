@@ -1,0 +1,27 @@
+.pagination {
+  display: flex;
+  gap: var(--spacing-xs-4px);
+}
+
+.pagination__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-txt-primary);
+  border-radius: 4px;
+  font-size: large;
+  width: var(--spacing-2xl-32px);
+  height: var(--spacing-2xl-32px);
+  color: var(--color-txt-primary);
+  text-decoration: none;
+  transition: transform 0.1s ease-in-out;
+}
+
+.pagination__item:hover {
+  transform: scale(0.9);
+}
+
+.pagination__item_active {
+  color: var(--color-bg-primary);
+  background-color: var(--color-txt-primary);
+}
