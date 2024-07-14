@@ -1,24 +1,17 @@
-import { Component } from 'react';
+import { FC, useState } from 'react';
 
-type Props = Record<string, never>;
+export const ErrorThrower: FC = () => {
+  const [isErrorState, setIsErrorState] = useState<boolean>(false);
 
-type State = {
-  isError: boolean;
-};
-
-export class ErrorThrower extends Component<Props, State> {
-  state: State = {
-    isError: false,
+  const handleButtonClick = () => {
+    setIsErrorState(true);
   };
 
-  handleButtonClick = () => {
-    this.setState({ isError: true });
-  };
-
-  render() {
-    if (this.state.isError) {
+  return isErrorState ? (
+    (() => {
       throw new Error('Error thrower: demo error');
-    }
-    return <button onClick={this.handleButtonClick}>Throw error</button>;
-  }
-}
+    })()
+  ) : (
+    <button onClick={handleButtonClick}>Throw error</button>
+  );
+};

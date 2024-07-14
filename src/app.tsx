@@ -1,13 +1,14 @@
-import { Component } from 'react';
-import { SearchModule } from './modules/search';
+import { FC } from 'react';
+import { Outlet } from 'react-router-dom';
+import { ErrorBoundary } from './components/error-boundary/error-boundary.component';
 import './app.css';
 
-export class App extends Component {
-  render() {
-    return (
+export const App: FC = () => {
+  return (
+    <ErrorBoundary>
       <main className="app-container">
-        <SearchModule />
+        <Outlet />
       </main>
-    );
-  }
-}
+    </ErrorBoundary>
+  );
+};

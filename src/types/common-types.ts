@@ -6,3 +6,5 @@ export type OptionalKeysOf<T extends object> = Exclude<
 >;
 
 export type PickOptionalPropertiesOf<T extends object> = Pick<T, OptionalKeysOf<T>>;
+
+export type Nullable<T> = T | null;

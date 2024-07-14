@@ -1,8 +1,4 @@
-import { Component } from 'react';
+import { FC } from 'react';
 import './loader.component.css';
 
-export class Loader extends Component {
-  render() {
-    return <div className="loader-dual-ring"></div>;
-  }
-}
+export const Loader: FC = () => <div className="loader-dual-ring"></div>;

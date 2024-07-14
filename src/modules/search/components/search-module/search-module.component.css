@@ -4,3 +4,11 @@
   align-items: center;
   flex-direction: column;
 }
+
+.search-module {
+  padding: var(--spacing-xl-24px);
+  border-radius: 8px;
+  min-width: 50%;
+  margin: 0px;
+  border: 2px solid var(--color-txt-primary);
+}

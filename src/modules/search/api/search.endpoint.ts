@@ -8,7 +8,7 @@ type Options = {
   page?: number;
 };
 
-const defaultOptions: PickOptionalPropertiesOf<Options> = {
+const defaultOptions: Required<PickOptionalPropertiesOf<Options>> = {
   limit: 10,
   page: 1,
 };
@@ -20,11 +20,21 @@ interface IResponse {
   total: number;
 }
 
-const responseAdapter = (response: IResponse): IItem[] => response.products;
+interface IData {
+  items: IItem[];
+  total: number;
+}
 
-export const searchItemsEndpoint = async (options: Options): Promise<IItem[]> => {
-  const { query, limit } = { ...defaultOptions, ...options };
+const responseAdapter = (response: IResponse): IData => ({
+  items: response.products,
+  total: response.total,
+});
 
-  const response = await fetch(`${BASE_URL}/products/search?q=${query}&limit=${limit}`);
+export const searchItemsEndpoint = async (options: Options): Promise<IData> => {
+  const { query, limit, page } = { ...defaultOptions, ...options };
+
+  const response = await fetch(
+    `${BASE_URL}/products/search?q=${query}&limit=${limit}&skip=${limit * (page - 1)}`,
+  );
   return responseAdapter(await response.json());
 };

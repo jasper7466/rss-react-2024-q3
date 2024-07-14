@@ -1,6 +1,21 @@
 .search-list-item {
   width: 100%;
   padding: var(--spacing-s-8px);
+  color: var(--color-txt-primary);
+  text-decoration: none;
   border: 2px solid var(--color-txt-primary);
   border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.search-list-item:hover {
+  transform: scale(0.95);
+  color: var(--color-bg-primary);
+  background-color: var(--color-bg-secondary);
+}
+
+.search-list-item:active {
+  color: var(--color-txt-primary);
+  transition: none;
 }
