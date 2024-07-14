@@ -17,7 +17,8 @@ export const SearchListItem: FC<Props> = ({ title, description, id }) => {
     <Link
       onClick={handleClick}
       to={{ pathname: generatePath(RoutePath.details, { id: `${id}` }), search: location.search }}
-      className="search-list-item">
+      className="search-list-item"
+      data-testid="list-item">
       <p>{id}</p>
       <p>{title}</p>
       <p>{description}</p>
